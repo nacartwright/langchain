@@ -221,7 +221,8 @@ class WebResearchRetriever(BaseRetriever):
             logger.info("Searching for relevant urls...")
             logger.info(f"Search results: {search_results}")
             for res in search_results:
-                if res.get("link", None):
+                link = res.get("link", None)
+                if link and not link.lower().endswith('.pdf'):
                     urls_to_look.append(res["link"])
 
         # Relevant urls
